@@ -1,0 +1,33 @@
+/*
+*	
+*
+*   What does this piece of code do?
+*
+* - When the project is run(can be run as cron but would be better to run it after a high networking 	 *   traffic event with some unix tool) the healthy app instances ips are put into the Nginx config file
+*	and the file is realoaded having a fresh ip list of instances to route traffic to(loadbalancing).
+*
+*
+*	How?
+*
+* - Get the healthy instances
+* - Get the app instances from the healthy ones using the imageId of the AMI
+* - Try to read the local ips file(text file that will keep all the app instances available), if it 
+*	doesn't exist it is created.
+* - Once read, the aws api is called and the local ips are compared with the ones obtained from the api
+*	call.
+* - If the ip arrays are different, the nginx.conf file is updated and the nginx service is restarted
+* 
+*
+* -> For this to work the instances must have the same image id, so delete the original app instance and 
+*    create completely new instances from the app AMI to correctly route the traffic to all app tier 
+*	 instances.
+*
+*
+*
+*	USE YOUR OWN CREDENTIALS AND IMAGEID(app instance)!!!!!!!
+*
+*/
+
+
+
+
